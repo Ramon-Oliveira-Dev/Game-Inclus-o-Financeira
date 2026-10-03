@@ -417,7 +417,7 @@ export function Layout({ currentTab, onTabChange, children, lang, setLang, gameS
                 title={`${t(lang, "hud_budget")} - ${lang === "pt" ? "Clique para ver detalhes" : lang === "es" ? "Haz clic para detalles" : "Click for details"}`}
               >
                 <span>💰</span>
-                <span>{gameState.budget}k</span>
+                <span>R$ {(gameState.budget * 1000).toLocaleString("pt-BR")},00</span>
               </button>
 
               {/* Score Pill */}

@@ -455,7 +455,7 @@ export function GameScreen({
               title={`${t(lang, "hud_budget")} - ${lang === "pt" ? "Clique para detalhes" : lang === "es" ? "Haz clic para detalles" : "Click for details"}`}
             >
               <span className="text-xs sm:text-sm">💰</span>
-              <span className="font-semibold tracking-tight text-[11px] sm:text-xs md:text-sm">{gameState.budget}k</span>
+              <span className="font-semibold tracking-tight text-[11px] sm:text-xs md:text-sm">R$ {(gameState.budget * 1000).toLocaleString("pt-BR")},00</span>
             </button>
 
             {/* Score Pill */}

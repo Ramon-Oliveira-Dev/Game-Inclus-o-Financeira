@@ -382,7 +382,7 @@ export function StartScreen({ lang, onStart, score, onShowRanking, gameState }: 
                     <div className="flex flex-col">
                       <span className="text-[8px] md:text-[9px] text-slate-500 uppercase tracking-widest mb-0.5 font-bold">{lang === "pt" ? "Orçamento" : lang === "es" ? "Presupuesto" : "Budget"}</span>
                       <span className="text-xs sm:text-sm md:text-base lg:text-lg font-black text-emerald-400 tracking-tight drop-shadow-[0_0_12px_rgba(16,185,129,0.4)]">
-                        {activeModule.phases.includes(gameState.ph) ? `R$ ${gameState.budget.toLocaleString("pt-BR")}` : "---"}
+                        {activeModule.phases.includes(gameState.ph) ? `R$ ${(gameState.budget * 1000).toLocaleString("pt-BR")},00` : "---"}
                       </span>
                     </div>
                     <div className="flex flex-col">

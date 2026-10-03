@@ -168,7 +168,7 @@ export const translations: any = {
             "badgeTxt": "#34dbdb",
             "title": "Capacitação AEE gratuita",
             "sub": "LDB Art. 59-A — formação continuada como dever do Estado. Fundeb Art. 36 §3 — formação profissional vinculada.",
-            "body": "Uma universidade pública oferece formação em AEE para 20 professores. Custo: apenas R$12k em diárias e transporte. A turma começa em 2 semanas.",
+            "body": "Uma universidade pública oferece formação em AEE para 20 professores. Custo: apenas R$ 12.000,00 em diárias e transporte. A turma começa em 2 semanas.",
             "prazoHoras": 336,
             "perguntaDebriefing": "Como planejar a substituição dos professores em sala durante o período de formação sem prejudicar as turmas?",
             "opts": [
@@ -257,7 +257,7 @@ export const translations: any = {
             "badgeTxt": "#3498db",
             "title": "Escola sem rampa de acesso",
             "sub": "Lei 10.098/2000 Art. 11 — acessibilidade arquitetônica obrigatória. CF Art. 208. Decreto 5.296/2004.",
-            "body": "3 alunos em cadeiras de rodas frequentam escola com degraus em todas as entradas. Custo estimado de adaptação: R$35k. Não há previsão orçamentária.",
+            "body": "3 alunos em cadeiras de rodas frequentam escola com degraus em todas as entradas. Custo estimado de adaptação: R$ 35.000,00. Não há previsão orçamentária.",
             "prazoHoras": null,
             "perguntaDebriefing": "Como criar um programa plurianual de acessibilidade arquitetônica que evite chegar a esta situação?",
             "opts": [
@@ -527,13 +527,13 @@ export const translations: any = {
             "badgeTxt": "#3498db",
             "title": "Verba federal com contrapartida obrigatória",
             "sub": "Fundeb Art. 16 — transferências voluntárias. Lei 8.666/93 Art. 65 II — alteração contratual.",
-            "body": "O MEC anuncia R$80k de verba extra para Educação Especial condicionada a contrapartida municipal de R$20k. Prazo de adesão: 15 dias. O município tem os R$20k, mas estão comprometidos com outro contrato.",
+            "body": "O MEC anuncia R$80k de verba extra para Educação Especial condicionada a contrapartida municipal de R$ 20.000,00. Prazo de adesão: 15 dias. O município tem os R$ 20.000,00, mas estão comprometidos com outro contrato.",
             "prazoHoras": 360,
             "perguntaDebriefing": "Que rotina de monitoramento de editais federais garantiria não perder estas oportunidades?",
             "opts": [
                 {
                     "l": "A",
-                    "txt": "Aderir remanejando os R$20k e renegociando o contrato existente",
+                    "txt": "Aderir remanejando os R$ 20.000,00 e renegociando o contrato existente",
                     "tag": "ÓTIMO",
                     "type": "good",
                     "qual": 8,
@@ -547,7 +547,7 @@ export const translations: any = {
                     "fi": {
                         "icon": "✅",
                         "t": "ÓTIMO",
-                        "b": "Resultado líquido de +R$60k. Renegociação de contrato é instrumento legítimo de gestão. Multiplica 4x o investimento municipal.",
+                        "b": "Resultado líquido de +R$ 60.000,00. Renegociação de contrato é instrumento legítimo de gestão. Multiplica 4x o investimento municipal.",
                         "cls": "good",
                         "qual": "+8",
                         "sust": "+5",
@@ -703,7 +703,7 @@ export const translations: any = {
             "badgeTxt": "#9834db",
             "title": "TA vs formação: dois editais, um orçamento",
             "sub": "LBI Art. 3 III — Tecnologia Assistiva. Res. CNE/CEB 4/2009 — formação para AEE. Teoria de Elias: interdependência entre recurso e capital humano.",
-            "body": "Dois editais chegam simultaneamente: (1) equipamentos de Tecnologia Assistiva por R$60k para 12 alunos; (2) pós-graduação em AEE para 4 professores por R$56k. Orçamento disponível: R$65k.",
+            "body": "Dois editais chegam simultaneamente: (1) equipamentos de Tecnologia Assistiva por R$ 60.000,00 para 12 alunos; (2) pós-graduação em AEE para 4 professores por R$ 56.000,00. Orçamento disponível: R$ 65.000,00.",
             "prazoHoras": 240,
             "perguntaDebriefing": "Sem professores capacitados, a TA tem impacto real? Sem TA, a formação do professor serve a quê? Como planejar os dois no próximo ciclo?",
             "opts": [
@@ -792,13 +792,13 @@ export const translations: any = {
             "badgeTxt": "#3498db",
             "title": "Criar reserva orçamentária para liminares",
             "sub": "Lei 4.320/64 Art. 91 — reserva de contingência. LRF Art. 42 — vedação de novos compromissos sem cobertura.",
-            "body": "O assessor jurídico sugere reservar R$30k como fundo de contingência para responder liminares judiciais inesperadas. Isso reduziria o orçamento disponível para programas planejados.",
+            "body": "O assessor jurídico sugere reservar R$ 30.000,00 como fundo de contingência para responder liminares judiciais inesperadas. Isso reduziria o orçamento disponível para programas planejados.",
             "prazoHoras": null,
             "perguntaDebriefing": "Qual percentual do orçamento anual de Educação Especial deveria compor a reserva de contingência judicial?",
             "opts": [
                 {
                     "l": "A",
-                    "txt": "Criar a reserva de R$30k conforme sugerido",
+                    "txt": "Criar a reserva de R$ 30.000,00 conforme sugerido",
                     "tag": "ÓTIMO",
                     "type": "good",
                     "qual": 2,
@@ -822,7 +822,7 @@ export const translations: any = {
                 },
                 {
                     "l": "B",
-                    "txt": "Criar reserva menor de R$15k como meio-termo",
+                    "txt": "Criar reserva menor de R$ 15.000,00 como meio-termo",
                     "tag": "ARRISCADO",
                     "type": "mid",
                     "qual": 1,
@@ -836,7 +836,7 @@ export const translations: any = {
                     "fi": {
                         "icon": "⚡",
                         "t": "ARRISCADO",
-                        "b": "Reserva insuficiente para liminares mais custosas (TA acima de R$20k). Melhor que nada, mas pode não resolver crises maiores.",
+                        "b": "Reserva insuficiente para liminares mais custosas (TA acima de R$ 20.000,00). Melhor que nada, mas pode não resolver crises maiores.",
                         "cls": "mid",
                         "qual": "+1",
                         "sust": "+4",
@@ -881,7 +881,7 @@ export const translations: any = {
             "badgeTxt": "#3498db",
             "title": "Acessibilidade: uma escola completa ou três parciais",
             "sub": "Lei 10.098/2000 Art. 11. Decreto 5.296/2004 Art. 24 — padrões mínimos de acessibilidade.",
-            "body": "R$120k disponíveis para acessibilidade arquitetônica. Opção 1: reforma completa de 1 escola. Opção 2: adaptações básicas em 3 escolas. 14 alunos com deficiência motora divididos entre as 3 escolas.",
+            "body": "R$ 120.000,00 disponíveis para acessibilidade arquitetônica. Opção 1: reforma completa de 1 escola. Opção 2: adaptações básicas em 3 escolas. 14 alunos com deficiência motora divididos entre as 3 escolas.",
             "prazoHoras": null,
             "perguntaDebriefing": "Como criar um plano plurianual de acessibilidade que evolua progressivamente cada escola para o padrão completo?",
             "opts": [
@@ -1059,9 +1059,9 @@ export const translations: any = {
             "badge": "OPORTUNIDADE",
             "badgeColor": "#0d2545",
             "badgeTxt": "#3498db",
-            "title": "Saldo positivo de R$30k: redistribuir estrategicamente",
+            "title": "Saldo positivo de R$ 30.000,00: redistribuir estrategicamente",
             "sub": "Lei 4.320/64 — princípio da anualidade e uso eficiente dos recursos públicos. Planejamento estratégico educacional.",
-            "body": "Ao revisar contratos do semestre, identificou-se uma sobra de R$30k. O recurso deve ser empenhado até o fim do mês, caso contrário retornará ao caixa único do município.",
+            "body": "Ao revisar contratos do semestre, identificou-se uma sobra de R$ 30.000,00. O recurso deve ser empenhado até o fim do mês, caso contrário retornará ao caixa único do município.",
             "prazoHoras": 240,
             "perguntaDebriefing": "Qual destinação traz maior retorno de longo prazo para a rede de educação inclusiva com um recurso pontual?",
             "opts": [
@@ -1148,7 +1148,7 @@ export const translations: any = {
             "badge": "DECISAO ESTRATEGICA",
             "badgeColor": "#0d2545",
             "badgeTxt": "#3498db",
-            "title": "Auditoria identifica R$18k questionáveis da gestão anterior",
+            "title": "Auditoria identifica R$ 18.000,00 questionáveis da gestão anterior",
             "sub": "Lei 8.429/1992 — dever de comunicação de improbidade. Súmulas do TCE sobre responsabilização solidária.",
             "body": "O controle interno apontou pagamentos suspeitos de R$18.000 em serviços não comprovados realizados na gestão passada. O relatório pede providências da atual secretaria.",
             "prazoHoras": 168,
@@ -1552,7 +1552,7 @@ export const translations: any = {
                     "fi": {
                         "icon": "⚡",
                         "t": "ARRISCADO",
-                        "b": "O advogado pode ter razão processualmente, mas cada dia aumenta o débito. Se o recurso for negado, o município deve os R$6k mais os dias adicionais.",
+                        "b": "O advogado pode ter razão processualmente, mas cada dia aumenta o débito. Se o recurso for negado, o município deve os R$ 6.000,00 mais os dias adicionais.",
                         "cls": "mid",
                         "qual": "-8",
                         "sust": "-8",
@@ -1597,7 +1597,7 @@ export const translations: any = {
             "badgeTxt": "#db3434",
             "title": "Cinco liminares simultâneas",
             "sub": "LBI Art. 28 — deveres múltiplos do Estado. CF Art. 208. Gestão de passivo judicial em Educação Especial.",
-            "body": "Cinco famílias obtiveram liminares diferentes na mesma semana: (1) cadeira motorizada R$22k, (2) software CAA R$15k, (3) intérprete LIBRAS R$18k/mês, (4) transporte adaptado R$12k, (5) profissional de apoio R$8k/mês. Total: R$75k. Reserva: R$30k.",
+            "body": "Cinco famílias obtiveram liminares diferentes na mesma semana: (1) cadeira motorizada R$ 22.000,00, (2) software CAA R$ 15.000,00, (3) intérprete LIBRAS R$ 18.000,00/mês, (4) transporte adaptado R$ 12.000,00, (5) profissional de apoio R$ 8.000,00/mês. Total: R$ 75.000,00. Reserva: R$ 30.000,00.",
             "prazoHoras": 96,
             "perguntaDebriefing": "Como um fundo de contingência pré-criado mudaria completamente a gestão deste cenário?",
             "opts": [
@@ -1668,7 +1668,7 @@ export const translations: any = {
                     "fi": {
                         "icon": "✗",
                         "t": "EQUÍVOCO",
-                        "b": "Cinco multas diárias simultâneas. Em 30 dias o passivo pode chegar a R$75k extras além do valor original. Contumácia grave.",
+                        "b": "Cinco multas diárias simultâneas. Em 30 dias o passivo pode chegar a R$ 75.000,00 extras além do valor original. Contumácia grave.",
                         "cls": "bad",
                         "qual": "-20",
                         "sust": "-18",
@@ -2761,7 +2761,7 @@ export const translations: any = {
             "badgeTxt": "#34db7a",
             "title": "Software CAA: Licença recorrente vs Compra",
             "sub": "Custeio vs Investimento. Lei 4.320/64. LBI Art. 28.",
-            "body": "Um software de CAA excelente custa R$12k/ano em licença (SaaS) ou R$45k em compra vitalícia. A rede precisa para 20 alunos.",
+            "body": "Um software de CAA excelente custa R$ 12.000,00/ano em licença (SaaS) ou R$ 45.000,00 em compra vitalícia. A rede precisa para 20 alunos.",
             "prazoHoras": 240,
             "perguntaDebriefing": "Modelos de assinatura são despesas correntes, compras são capital. Como isso afeta o Fundeb?",
             "opts": [
@@ -2938,13 +2938,13 @@ export const translations: any = {
             "badgeTxt": "#3498db",
             "title": "Sala Multifuncional AEE Tipo 2 completa",
             "sub": "Resolução CNE/CEB 4/2009. Salas de Recursos Multifuncionais.",
-            "body": "Para abrir uma sala Tipo 2 (com foco em deficiência visual), faltam equipamentos que somam R$40k. O bairro é vulnerável e tem alta demanda.",
+            "body": "Para abrir uma sala Tipo 2 (com foco em deficiência visual), faltam equipamentos que somam R$ 40.000,00. O bairro é vulnerável e tem alta demanda.",
             "prazoHoras": 360,
             "perguntaDebriefing": "O impacto territorial de uma sala bem equipada justifica o investimento concentrado?",
             "opts": [
                 {
                     "l": "A",
-                    "txt": "Investir os R$40k e abrir a sala com padrão ouro",
+                    "txt": "Investir os R$ 40.000,00 e abrir a sala com padrão ouro",
                     "tag": "ÓTIMO",
                     "type": "good",
                     "qual": 15,
@@ -2968,7 +2968,7 @@ export const translations: any = {
                 },
                 {
                     "l": "B",
-                    "txt": "Abrir a sala apenas com materiais básicos (Tipo 1) R$10k",
+                    "txt": "Abrir a sala apenas com materiais básicos (Tipo 1) R$ 10.000,00",
                     "tag": "ARRISCADO",
                     "type": "mid",
                     "qual": 2,
@@ -3027,7 +3027,7 @@ export const translations: any = {
             "badgeTxt": "#34db7a",
             "title": "Manutenção de TA: Empresa vs Técnico Municipal",
             "sub": "Terceirização vs Cargo Público. Agilidade na manutenção.",
-            "body": "Equipamentos caros estão quebrando. Contratar empresa de manutenção custa R$25k/ano. Contratar 1 técnico municipal especializado custa R$40k/ano.",
+            "body": "Equipamentos caros estão quebrando. Contratar empresa de manutenção custa R$ 25.000,00/ano. Contratar 1 técnico municipal especializado custa R$ 40.000,00/ano.",
             "prazoHoras": null,
             "perguntaDebriefing": "Em serviços de suporte rápido, a terceirização é mais eficiente que a estrutura própria?",
             "opts": [
@@ -3204,9 +3204,9 @@ export const translations: any = {
             "badge": "FORMACAO",
             "badgeColor": "#0d4545",
             "badgeTxt": "#34dbdb",
-            "title": "Especialização AEE R$3.5k/vaga",
+            "title": "Especialização AEE R$ 3.500,00/vaga",
             "sub": "Fundeb e formação. LDB.",
-            "body": "Uma universidade renomada oferece pós em AEE por R$3.500 a vaga. Você tem R$70k. Pode formar 20 professores.",
+            "body": "Uma universidade renomada oferece pós em AEE por R$3.500 a vaga. Você tem R$ 70.000,00. Pode formar 20 professores.",
             "prazoHoras": 168,
             "perguntaDebriefing": "Investir alto em poucos profissionais ou pulverizar recursos?",
             "opts": [
@@ -3384,7 +3384,7 @@ export const translations: any = {
             "badgeTxt": "#34dbdb",
             "title": "Capacitação em Braille, LIBRAS ou CAA",
             "sub": "Análise de dados para política pública.",
-            "body": "Só há recurso (R$25k) para uma capacitação de grande porte este semestre.",
+            "body": "Só há recurso (R$ 25.000,00) para uma capacitação de grande porte este semestre.",
             "prazoHoras": null,
             "perguntaDebriefing": "Como os dados do censo escolar devem guiar as escolhas de formação?",
             "opts": [
@@ -4277,7 +4277,7 @@ export const translations: any = {
             "badgeTxt": "#db34db",
             "title": "IA para auditar gastos com TA",
             "sub": "Eficiência e tecnologia no controle interno.",
-            "body": "Você pode aprovar o uso de um software de IA (custa R$50k) que audita notas fiscais de empresas de Saúde e TA e cruza com a tabela SUS, buscando sobrepreço.",
+            "body": "Você pode aprovar o uso de um software de IA (custa R$ 50.000,00) que audita notas fiscais de empresas de Saúde e TA e cruza com a tabela SUS, buscando sobrepreço.",
             "prazoHoras": 720,
             "perguntaDebriefing": "Automatizar a fiscalização pode gerar mais economia do que o custo do próprio sistema?",
             "opts": [

@@ -217,8 +217,8 @@ export function StatInfoModal({ isOpen, onClose, type, gameState, lang }: StatIn
                       {lang === "pt" ? "Saldo Orçamentário Atual" : lang === "es" ? "Saldo Presupuestario Actual" : "Current Budget Balance"}
                     </div>
                     <div className="text-3xl sm:text-4xl font-black text-white font-mono tracking-tight flex items-baseline gap-2">
-                      <span className="text-emerald-400">R$ {gameState.budget.toLocaleString("pt-BR")}.000</span>
-                      <span className="text-xs text-emerald-300/70 font-sans font-normal">({gameState.budget}k QSD)</span>
+                      <span className="text-emerald-400">R$ {(gameState.budget * 1000).toLocaleString("pt-BR")},00</span>
+                      <span className="text-xs text-emerald-300/70 font-sans font-normal">(Saldo Atual em Caixa)</span>
                     </div>
 
                     {/* Fiscal Indicator Bar */}
