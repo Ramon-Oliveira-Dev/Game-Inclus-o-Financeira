@@ -1,0 +1,6 @@
+{
+  "name": "Inclusão Financeira - O desafio da educação especial",
+  "description": "Um serious game sobre gestão pública de inclusão financeira e educação especial.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,534 @@
+const fs = require('fs');
+
+const m3f7 = [
+  {
+    id: "M3F7C1", icone: "💻", tipo: "TECNOLOGIA_ASSISTIVA",
+    titulo: "Software CAA: Licença recorrente vs Compra",
+    descricao: "Um software de CAA excelente custa R$12k/ano em licença (SaaS) ou R$45k em compra vitalícia. A rede precisa para 20 alunos.",
+    prazoHoras: 240,
+    baseConceitual: "Custeio vs Investimento. Lei 4.320/64. LBI Art. 28.",
+    perguntaDebriefing: "Modelos de assinatura são despesas correntes, compras são capital. Como isso afeta o Fundeb?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Comprar a licença vitalícia (Investimento)",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "Garante o patrimônio para a rede e não sobrecarrega o custeio futuro, mas consome muito caixa agora.",
+        baseJuridica: "Lei 4.320/64",
+        qual: 10, sust: -8, sc: 120, budgetCost: 45000,
+        axisEtico: 8, axisFiscal: 5, axisLegal: 8, axisPedagogico: 10
+      },
+      B: {
+        id: "B", texto: "Assinar o plano anual (Custeio)",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Mais barato hoje, mas cria despesa continuada. Risco de corte de serviço em anos de crise fiscal.",
+        baseJuridica: "LRF Art. 17",
+        qual: 8, sust: -4, sc: 80, budgetCost: 12000,
+        axisEtico: 5, axisFiscal: 8, axisLegal: 5, axisPedagogico: 8
+      },
+      C: {
+        id: "C", texto: "Usar software gratuito de código aberto sem suporte",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "O software livre falha sem suporte técnico, abandonando os alunos. Economia que custa a inclusão.",
+        baseJuridica: "LBI Art. 3",
+        qual: -12, sust: 5, sc: 10, budgetCost: 0,
+        axisEtico: -5, axisFiscal: 10, axisLegal: -5, axisPedagogico: -15,
+        consequenciaLateral: "CI_02"
+      }
+    }
+  },
+  {
+    id: "M3F7C2", icone: "📱", tipo: "DECISAO_ESTRATEGICA",
+    titulo: "Tablets: Centralizados vs Descentralizados",
+    descricao: "O MEC enviou 30 tablets. Você pode enviá-los às escolas para uso sob demanda (risco de quebra/furto) ou mantê-los no polo central para empréstimo.",
+    prazoHoras: null,
+    baseConceitual: "Descentralização do atendimento. LBI Art. 28.",
+    perguntaDebriefing: "Recursos centralizados garantem segurança patrimonial, mas descentralizados garantem acesso. O que é prioridade?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Descentralizar para as escolas com termo de responsabilidade",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "A tecnologia deve estar onde o aluno está. O risco de quebra é inerente ao uso.",
+        baseJuridica: "Princípio da eficiência",
+        qual: 12, sust: -4, sc: 130, budgetCost: 0,
+        axisEtico: 10, axisFiscal: -5, axisLegal: 5, axisPedagogico: 15
+      },
+      B: {
+        id: "B", texto: "Centralizar no polo para uso agendado",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Protege o patrimônio, mas reduz drasticamente o uso pedagógico no dia a dia.",
+        baseJuridica: "Lei 8.666/93 - Patrimônio",
+        qual: -2, sust: 5, sc: 50, budgetCost: 0,
+        axisEtico: -5, axisFiscal: 10, axisLegal: 5, axisPedagogico: -10
+      },
+      C: {
+        id: "C", texto: "Trancar os tablets no cofre da secretaria até o ano letivo seguinte",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "Bem público não utilizado é desperdício e omissão pedagógica.",
+        baseJuridica: "Improbidade Art. 10",
+        qual: -15, sust: 2, sc: -10, budgetCost: 0,
+        axisEtico: -15, axisFiscal: 5, axisLegal: -10, axisPedagogico: -15
+      }
+    }
+  },
+  {
+    id: "M3F7C3", icone: "🏫", tipo: "DECISAO_ESTRATEGICA",
+    titulo: "Sala Multifuncional AEE Tipo 2 completa",
+    descricao: "Para abrir uma sala Tipo 2 (com foco em deficiência visual), faltam equipamentos que somam R$40k. O bairro é vulnerável e tem alta demanda.",
+    prazoHoras: 360,
+    baseConceitual: "Resolução CNE/CEB 4/2009. Salas de Recursos Multifuncionais.",
+    perguntaDebriefing: "O impacto territorial de uma sala bem equipada justifica o investimento concentrado?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Investir os R$40k e abrir a sala com padrão ouro",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "Cria um polo de excelência no território vulnerável, reduzindo deslocamentos e judicialização local.",
+        baseJuridica: "Res. CNE/CEB 4/2009",
+        qual: 15, sust: -10, sc: 140, budgetCost: 40000,
+        axisEtico: 15, axisFiscal: -5, axisLegal: 10, axisPedagogico: 15
+      },
+      B: {
+        id: "B", texto: "Abrir a sala apenas com materiais básicos (Tipo 1) R$10k",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Atende em parte, mas frustra os alunos cegos da região que precisarão continuar se deslocando.",
+        baseJuridica: "LBI Art. 28",
+        qual: 2, sust: 2, sc: 60, budgetCost: 10000,
+        axisEtico: 0, axisFiscal: 8, axisLegal: 5, axisPedagogico: 2
+      },
+      C: {
+        id: "C", texto: "Adiar a abertura para o próximo mandato",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "A demanda existe hoje. Atrasar a oferta é negligência estrutural.",
+        baseJuridica: "CF/88 Art. 208",
+        qual: -15, sust: 8, sc: -10, budgetCost: 0,
+        axisEtico: -10, axisFiscal: 5, axisLegal: -5, axisPedagogico: -15,
+        flagOmissao: true
+      }
+    }
+  },
+  {
+    id: "M3F7C4", icone: "🔧", tipo: "TECNOLOGIA_ASSISTIVA",
+    titulo: "Manutenção de TA: Empresa vs Técnico Municipal",
+    descricao: "Equipamentos caros estão quebrando. Contratar empresa de manutenção custa R$25k/ano. Contratar 1 técnico municipal especializado custa R$40k/ano.",
+    prazoHoras: null,
+    baseConceitual: "Terceirização vs Cargo Público. Agilidade na manutenção.",
+    perguntaDebriefing: "Em serviços de suporte rápido, a terceirização é mais eficiente que a estrutura própria?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Contratar empresa terceirizada com SLA de 48h",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "Mais barato e garante o retorno rápido do equipamento ao aluno através de SLA rigoroso.",
+        baseJuridica: "Lei 8.666/93",
+        qual: 8, sust: -5, sc: 110, budgetCost: 25000,
+        axisEtico: 5, axisFiscal: 10, axisLegal: 8, axisPedagogico: 5
+      },
+      B: {
+        id: "B", texto: "Criar cargo e contratar técnico próprio",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Mais caro e burocrático. Na falta de peças, o servidor não conseguirá consertar rápido.",
+        baseJuridica: "CF/88 Art. 37",
+        qual: 4, sust: -10, sc: 50, budgetCost: 40000,
+        axisEtico: 5, axisFiscal: -5, axisLegal: 5, axisPedagogico: 2
+      },
+      C: {
+        id: "C", texto: "Não ter manutenção. Quebrou, entra na fila de licitação para comprar novo.",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "Desperdício de dinheiro público e interrupção do desenvolvimento do aluno por meses.",
+        baseJuridica: "Improbidade - dano ao erário",
+        qual: -15, sust: -5, sc: -20, budgetCost: 0,
+        axisEtico: -15, axisFiscal: -10, axisLegal: -10, axisPedagogico: -15
+      }
+    }
+  },
+  {
+    id: "M3F7C5", icone: "🎁", tipo: "DILEMA_ETICO",
+    titulo: "Empresa doa tablets usados sem licitação",
+    descricao: "Uma grande empresa quer doar 50 tablets seminovos, mas exige publicidade da doação nos eventos da prefeitura. Sem licitação.",
+    prazoHoras: 48,
+    baseConceitual: "Doação com encargo. Publicidade institucional. Princípio da impessoalidade.",
+    perguntaDebriefing: "Quando a doação de um bem privado para o setor público viola a impessoalidade?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Aceitar a doação, mas recusar a exigência de publicidade",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "A administração pode receber doações, mas não pode fazer propaganda privada. Protege o erário e a ética.",
+        baseJuridica: "CF/88 Art. 37 - Impessoalidade",
+        qual: 10, sust: 5, sc: 130, budgetCost: 0,
+        axisEtico: 15, axisFiscal: 10, axisLegal: 10, axisPedagogico: 10,
+        flagOpcaoCriativa: true
+      },
+      B: {
+        id: "B", texto: "Aceitar a doação e a publicidade em evento discreto",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Risco de denúncia no MP por promoção comercial em espaço público.",
+        baseJuridica: "Improbidade Art. 11",
+        qual: 5, sust: 2, sc: 50, budgetCost: 0,
+        axisEtico: -5, axisFiscal: 8, axisLegal: -10, axisPedagogico: 5
+      },
+      C: {
+        id: "C", texto: "Recusar a doação por medo de problemas no TCE",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "Recusar bens úteis por puro receio burocrático, sem tentar negociar os termos, penaliza os alunos.",
+        baseJuridica: "Eficiência",
+        qual: -8, sust: -2, sc: 10, budgetCost: 0,
+        axisEtico: 0, axisFiscal: -5, axisLegal: 0, axisPedagogico: -10
+      }
+    }
+  }
+];
+
+const m3f8 = [
+  {
+    id: "M3F8C1", icone: "🎓", tipo: "FORMACAO",
+    titulo: "Especialização AEE R$3.5k/vaga",
+    descricao: "Uma universidade renomada oferece pós em AEE por R$3.500 a vaga. Você tem R$70k. Pode formar 20 professores.",
+    prazoHoras: 168,
+    baseConceitual: "Fundeb e formação. LDB.",
+    perguntaDebriefing: "Investir alto em poucos profissionais ou pulverizar recursos?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Pagar a pós para 20 líderes que atuarão como multiplicadores",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "A estratégia de multiplicadores otimiza o recurso e espalha o conhecimento pela rede.",
+        baseJuridica: "LDB Art. 62",
+        qual: 12, sust: -6, sc: 140, budgetCost: 70000,
+        axisEtico: 10, axisFiscal: 5, axisLegal: 10, axisPedagogico: 15
+      },
+      B: {
+        id: "B", texto: "Tentar formar 70 professores em cursos livres mais baratos",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Cursos rasos não formam especialistas capazes de lidar com casos complexos.",
+        baseJuridica: "LDB",
+        qual: 5, sust: -4, sc: 60, budgetCost: 35000,
+        axisEtico: 5, axisFiscal: 8, axisLegal: 5, axisPedagogico: 0
+      },
+      C: {
+        id: "C", texto: "Não investir em formação e focar apenas em infraestrutura",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "Infraestrutura sem professor capacitado vira sala vazia.",
+        baseJuridica: "Res. CNE/CEB 4/2009",
+        qual: -15, sust: 8, sc: -10, budgetCost: 0,
+        axisEtico: -10, axisFiscal: 10, axisLegal: -5, axisPedagogico: -20,
+        consequenciaLateral: "CI_03"
+      }
+    }
+  },
+  {
+    id: "M3F8C2", icone: "🤝", tipo: "FORMACAO",
+    titulo: "Parceria com universidade pública gratuita",
+    descricao: "Uma UF oferece assessoria gratuita se a secretaria ceder dados dos alunos para pesquisa (com autorização das famílias).",
+    prazoHoras: 120,
+    baseConceitual: "LGPD e dados sensíveis. Cooperação técnica.",
+    perguntaDebriefing: "Dados de saúde e educação são sensíveis. Como equilibrar a LGPD com o interesse público?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Assinar termo de cooperação garantindo anonimização e termo de consentimento",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "Respeita a LGPD e traz expertise acadêmica gratuita para a rede.",
+        baseJuridica: "LGPD Art. 11 e 14",
+        qual: 15, sust: 10, sc: 150, budgetCost: 0,
+        axisEtico: 15, axisFiscal: 10, axisLegal: 15, axisPedagogico: 15
+      },
+      B: {
+        id: "B", texto: "Ceder os dados brutos sem anonimizar para agilizar",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "Ceder dados de menores sem proteção é infração gravíssima à LGPD.",
+        baseJuridica: "LGPD Art. 14",
+        qual: -10, sust: -20, sc: -30, budgetCost: 0,
+        axisEtico: -20, axisFiscal: -5, axisLegal: -20, axisPedagogico: -5,
+        consequenciaLateral: "CI_04"
+      },
+      C: {
+        id: "C", texto: "Recusar a parceria por medo da burocracia da LGPD",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Perde-se uma oportunidade valiosa por incapacidade administrativa de gerir dados.",
+        baseJuridica: "Eficiência",
+        qual: -5, sust: 0, sc: 20, budgetCost: 0,
+        axisEtico: 0, axisFiscal: 0, axisLegal: -5, axisPedagogico: -10
+      }
+    }
+  },
+  {
+    id: "M3F8C3", icone: "👁️", tipo: "FORMACAO",
+    titulo: "Capacitação em Braille, LIBRAS ou CAA",
+    descricao: "Só há recurso (R$25k) para uma capacitação de grande porte este semestre.",
+    prazoHoras: null,
+    baseConceitual: "Análise de dados para política pública.",
+    perguntaDebriefing: "Como os dados do censo escolar devem guiar as escolhas de formação?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Usar dados do censo para identificar a maior demanda atual na rede e focar nela",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "Gestão baseada em evidências otimiza recursos e ataca o gargalo principal.",
+        baseJuridica: "PNE Meta 4",
+        qual: 12, sust: -3, sc: 120, budgetCost: 25000,
+        axisEtico: 10, axisFiscal: 5, axisLegal: 5, axisPedagogico: 15
+      },
+      B: {
+        id: "B", texto: "Dividir o recurso nos 3 e fazer workshops superficiais de 1 dia",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Ninguém sai capacitado de fato. Cobre tudo, mas não resolve nada.",
+        baseJuridica: "Eficiência",
+        qual: 2, sust: -5, sc: 50, budgetCost: 25000,
+        axisEtico: 5, axisFiscal: -5, axisLegal: 0, axisPedagogico: -5
+      },
+      C: {
+        id: "C", texto: "Escolher LIBRAS porque o prefeito acha mais 'visível' politicamente",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "Decisão política em tema técnico prejudica alunos com outras deficiências.",
+        baseJuridica: "Impessoalidade",
+        qual: -10, sust: -3, sc: 10, budgetCost: 25000,
+        axisEtico: -15, axisFiscal: -5, axisLegal: -10, axisPedagogico: -10
+      }
+    }
+  },
+  {
+    id: "M3F8C4", icone: "🤟", tipo: "DECISAO_ESTRATEGICA",
+    titulo: "Intérprete LIBRAS: Concurso, CLT ou Terceirização?",
+    descricao: "A demanda por intérpretes de LIBRAS dobrou. Fazer concurso demora 1 ano. Terceirizar é rápido, mas custa 30% a mais e há rotatividade.",
+    prazoHoras: null,
+    baseConceitual: "Súmula 331 TST (Terceirização). LBI Art. 28 IV.",
+    perguntaDebriefing: "Quando o vínculo precário do profissional terceirizado afeta diretamente a aprendizagem?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Terceirizar emergencialmente e abrir concurso para o ano seguinte",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "Solução híbrida responsável. Atende a urgência e planeja a solução definitiva.",
+        baseJuridica: "CF/88 Art. 37 II",
+        qual: 10, sust: -8, sc: 130, budgetCost: 40000,
+        axisEtico: 10, axisFiscal: 5, axisLegal: 15, axisPedagogico: 10
+      },
+      B: {
+        id: "B", texto: "Apenas terceirizar para evitar inchaço da máquina pública",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "A rotatividade de terceirizados quebra o vínculo comunicacional essencial para alunos surdos.",
+        baseJuridica: "LBI Art. 28",
+        qual: 0, sust: -5, sc: 50, budgetCost: 50000,
+        axisEtico: 0, axisFiscal: 5, axisLegal: 5, axisPedagogico: -5
+      },
+      C: {
+        id: "C", texto: "Aguardar o concurso terminar e deixar os alunos sem intérprete até lá",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "1 ano sem intérprete significa exclusão escolar total para alunos surdos.",
+        baseJuridica: "Decreto 5.626/2005",
+        qual: -20, sust: 10, sc: -20, budgetCost: 0,
+        axisEtico: -15, axisFiscal: 10, axisLegal: -15, axisPedagogico: -20,
+        flagOmissao: true, consequenciaLateral: "CI_05"
+      }
+    }
+  },
+  {
+    id: "M3F8C5", icone: "👔", tipo: "DILEMA_ETICO",
+    titulo: "Diretor recém-nomeado recusa EE",
+    descricao: "Um diretor politicamente forte recusa matrículas de alunos severos alegando que 'a escola não tem estrutura'.",
+    prazoHoras: 48,
+    baseConceitual: "Crime de discriminação. LBI Art. 8º. Gestão escolar.",
+    perguntaDebriefing: "Recusar matrícula por deficiência é crime inafiançável. A secretaria deve acobertar ou agir?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Obrigar a matrícula, abrir PAD contra o diretor e enviar equipe de apoio",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "Cumpre a lei rigorosamente. Enviar apoio mostra que a secretaria também atua.",
+        baseJuridica: "LBI Art. 8º",
+        qual: 12, sust: -4, sc: 140, budgetCost: 5000,
+        axisEtico: 15, axisFiscal: 0, axisLegal: 15, axisPedagogico: 10,
+        flagRecusaPolitica: true
+      },
+      B: {
+        id: "B", texto: "Tentar convencer o diretor informalmente, sem registro oficial",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Omitir crime de discriminação torna o secretário cúmplice perante o MP.",
+        baseJuridica: "CP Art. 319 (Prevaricação)",
+        qual: -5, sust: 0, sc: 40, budgetCost: 0,
+        axisEtico: -10, axisFiscal: 0, axisLegal: -15, axisPedagogico: -5
+      },
+      C: {
+        id: "C", texto: "Redirecionar os alunos para outra escola mais 'acolhedora'",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "Valida a exclusão e cria guetos escolares. Inaceitável.",
+        baseJuridica: "LBI Art. 28 IV",
+        qual: -20, sust: 2, sc: -30, budgetCost: 0,
+        axisEtico: -20, axisFiscal: 5, axisLegal: -20, axisPedagogico: -20,
+        consequenciaLateral: "CI_10"
+      }
+    }
+  }
+];
+
+const m3f9 = [
+  {
+    id: "M3F9C1", icone: "📋", tipo: "DECISAO_ESTRATEGICA",
+    titulo: "Plano Municipal EE com metas quantificáveis",
+    descricao: "É hora de aprovar o Plano Decenal. Incluir metas exatas (ex: 100% de salas acessíveis) permite cobrança do MP. Metas vagas evitam processos.",
+    prazoHoras: 720,
+    baseConceitual: "PNE (Lei 13.005). Accountability.",
+    perguntaDebriefing: "Planejar com metas vagas protege o gestor ou sabota o financiamento futuro?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Estabelecer metas reais, quantificáveis e com base orçamentária",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "Gera compromisso de Estado. Facilita justificar verbas na Câmara Municipal depois.",
+        baseJuridica: "PNE Art. 8º",
+        qual: 10, sust: 5, sc: 140, budgetCost: 0,
+        axisEtico: 15, axisFiscal: 10, axisLegal: 10, axisPedagogico: 10
+      },
+      B: {
+        id: "B", texto: "Fazer metas conceituais sem números exatos ou prazos rígidos",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Um plano que não compromete não guia a gestão, virando peça de ficção.",
+        baseJuridica: "TCU (Auditoria de Políticas)",
+        qual: -5, sust: 5, sc: 50, budgetCost: 0,
+        axisEtico: -5, axisFiscal: 5, axisLegal: -5, axisPedagogico: -5
+      },
+      C: {
+        id: "C", texto: "Copiar o plano nacional sem adaptar à realidade do município",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "As realidades diferem. Copiar e colar demonstra total ausência de planejamento local.",
+        baseJuridica: "Lei 13.005",
+        qual: -15, sust: 0, sc: -10, budgetCost: 0,
+        axisEtico: -10, axisFiscal: -5, axisLegal: -10, axisPedagogico: -15
+      }
+    }
+  },
+  {
+    id: "M3F9C2", icone: "🤝", tipo: "INOVACAO",
+    titulo: "Consórcio intermunicipal para TA",
+    descricao: "Unir-se a 4 cidades vizinhas para comprar TA em lote reduz o preço em 30%, mas atrasa o edital em 2 meses pela burocracia do consórcio.",
+    prazoHoras: null,
+    baseConceitual: "Lei 11.107/05 (Consórcios Públicos). Economia de escala.",
+    perguntaDebriefing: "O ganho de escala compensa o atraso logístico na administração pública?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Liderar o consórcio: o atraso compensa a economia estrutural",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "Ação estruturante de alto nível. Economia permite atender 30% mais alunos.",
+        baseJuridica: "Lei 11.107/05",
+        qual: 12, sust: 15, sc: 150, budgetCost: 0,
+        axisEtico: 10, axisFiscal: 15, axisLegal: 10, axisPedagogico: 5,
+        flagOpcaoCriativa: true
+      },
+      B: {
+        id: "B", texto: "Comprar sozinho agora para ser rápido",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Garante a agilidade, mas custa 30% a mais. A sustentabilidade no longo prazo sofre.",
+        baseJuridica: "Licitações",
+        qual: 5, sust: -10, sc: 60, budgetCost: 40000,
+        axisEtico: 0, axisFiscal: -10, axisLegal: 0, axisPedagogico: 5
+      },
+      C: {
+        id: "C", texto: "Terceirizar a decisão para a associação de municípios",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "Omissão. Sem liderança, o consórcio não anda e o dinheiro não é gasto.",
+        baseJuridica: "Eficiência",
+        qual: -10, sust: -5, sc: 10, budgetCost: 0,
+        axisEtico: -5, axisFiscal: -5, axisLegal: -5, axisPedagogico: -5
+      }
+    }
+  },
+  {
+    id: "M3F9C3", icone: "📊", tipo: "DECISAO_ESTRATEGICA",
+    titulo: "INEP: queda de 8% na permanência",
+    descricao: "Dados federais mostram que alunos com deficiência estão abandonando a escola no seu município. A evasão cresceu 8%.",
+    prazoHoras: 168,
+    baseConceitual: "Censo Escolar. Evasão na EE. Intersetorialidade.",
+    perguntaDebriefing: "Quando o aluno PcD evade, o problema costuma ser fora da sala de aula (transporte, saúde, pobreza).",
+    opcoes: {
+      A: {
+        id: "A", texto: "Criar força-tarefa com Saúde e Assistência Social (Busca Ativa)",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "Intersetorialidade é a única forma de combater a exclusão complexa.",
+        baseJuridica: "ECA Art. 53",
+        qual: 15, sust: -4, sc: 140, budgetCost: 8000,
+        axisEtico: 15, axisFiscal: 0, axisLegal: 10, axisPedagogico: 15
+      },
+      B: {
+        id: "B", texto: "Apenas instruir as escolas a ligarem para as famílias",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Ação fraca. Uma ligação não resolve falta de transporte adaptado ou fraldas.",
+        baseJuridica: "LDB",
+        qual: 2, sust: 0, sc: 50, budgetCost: 0,
+        axisEtico: 5, axisFiscal: 2, axisLegal: 0, axisPedagogico: 2
+      },
+      C: {
+        id: "C", texto: "Questionar a metodologia do INEP publicamente",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "Atacar o mensageiro não resolve o problema. A evasão é real e negligenciá-la é grave.",
+        baseJuridica: "Princípio da Veracidade",
+        qual: -15, sust: -5, sc: -10, budgetCost: 0,
+        axisEtico: -15, axisFiscal: 0, axisLegal: -10, axisPedagogico: -10
+      }
+    }
+  },
+  {
+    id: "M3F9C4", icone: "🏛️", tipo: "PRESSAO_POLITICA",
+    titulo: "Lei municipal de acessibilidade inviável",
+    descricao: "A Câmara aprovou lei obrigando elevadores em todas as escolas em 90 dias. É fisicamente e financeiramente impossível (R$2 milhões).",
+    prazoHoras: 72,
+    baseConceitual: "Veto do Executivo por inconstitucionalidade. Vício de iniciativa.",
+    perguntaDebriefing: "Leis demagógicas ajudam ou atrapalham a consolidação da inclusão responsável?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Sugerir veto técnico e propor cronograma exequível (3 anos)",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "O veto evita a falência e o novo cronograma garante o avanço contínuo e viável.",
+        baseJuridica: "CF/88 - Vício de Iniciativa",
+        qual: 8, sust: 10, sc: 130, budgetCost: 0,
+        axisEtico: 10, axisFiscal: 15, axisLegal: 15, axisPedagogico: 5,
+        flagRecusaPolitica: true
+      },
+      B: {
+        id: "B", texto: "Sancionar a lei e não cumprir",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "Gera judicialização imediata e improbidade por descumprimento de lei sancionada.",
+        baseJuridica: "Improbidade Administrativa",
+        qual: -10, sust: -20, sc: -30, budgetCost: 0,
+        axisEtico: -15, axisFiscal: -20, axisLegal: -15, axisPedagogico: 0,
+        consequenciaLateral: "CI_04"
+      },
+      C: {
+        id: "C", texto: "Remanejar o orçamento inteiro da educação para comprar elevadores",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "Paralisa todos os outros serviços (merenda, transporte, professores) por uma lei demagógica.",
+        baseJuridica: "LRF",
+        qual: 0, sust: -25, sc: 20, budgetCost: 200000,
+        axisEtico: -5, axisFiscal: -20, axisLegal: 5, axisPedagogico: -15
+      }
+    }
+  },
+  {
+    id: "M3F9C5", icone: "📢", tipo: "DECISAO_ESTRATEGICA",
+    titulo: "Relatório anual ao Conselho e MP",
+    descricao: "Fim do ano. Você deve apresentar as contas e resultados. A qualidade da educação especial subiu, mas os custos explodiram.",
+    prazoHoras: 120,
+    baseConceitual: "Controle social. Transparência.",
+    perguntaDebriefing: "Educação Especial de qualidade custa caro. Como defender esse investimento perante a sociedade?",
+    opcoes: {
+      A: {
+        id: "A", texto: "Demonstrar o custo-benefício (menor evasão, zero liminares)",
+        rotulo: "ÓTIMO", iconeRotulo: "✅", corRotulo: "#1D9E75",
+        feedback: "Mostra que o 'gasto' é investimento que evitou multas e garantiu direitos.",
+        baseJuridica: "LAI e ECA",
+        qual: 10, sust: 10, sc: 140, budgetCost: 0,
+        axisEtico: 15, axisFiscal: 10, axisLegal: 10, axisPedagogico: 10
+      },
+      B: {
+        id: "B", texto: "Focar só no aspecto emocional ('são crianças especiais')",
+        rotulo: "ARRISCADO", iconeRotulo: "⚡", corRotulo: "#BA7517",
+        feedback: "O MP e o TCE não avaliam emoções, avaliam eficiência e legalidade.",
+        baseJuridica: "Direito Financeiro",
+        qual: 2, sust: -5, sc: 50, budgetCost: 0,
+        axisEtico: 5, axisFiscal: -5, axisLegal: -5, axisPedagogico: 0
+      },
+      C: {
+        id: "C", texto: "Prometer cortes drásticos no ano seguinte para agradar auditores",
+        rotulo: "EQUÍVOCO", iconeRotulo: "✗", corRotulo: "#993C1D",
+        feedback: "Prometer retrocesso de direitos (efeito cliquet) é inconstitucional.",
+        baseJuridica: "Vedação ao retrocesso (CF/88)",
+        qual: -15, sust: 5, sc: -10, budgetCost: 0,
+        axisEtico: -15, axisFiscal: 5, axisLegal: -15, axisPedagogico: -10
+      }
+    }
+  }
+];
+
+fs.writeFileSync('src/data/mod3.json', JSON.stringify([...m3f7, ...m3f8, ...m3f9], null, 2));
+console.log('mod3 done');
