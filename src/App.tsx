@@ -495,7 +495,7 @@ function AppContent() {
       </div>
       <div className={`fixed w-full flex flex-row items-center justify-center px-4 z-40 pointer-events-none ${screen === "main" ? "bottom-24 md:bottom-3" : "bottom-3"}`}>
          <div className="font-medium text-[8.5px] sm:text-[10.5px] tracking-[1.5px] sm:tracking-[2px] text-cyan-400/70 sm:text-cyan-400/80 text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-           UFES &nbsp;|&nbsp; GRUPGIE &nbsp;|&nbsp; R&A PROJECT © 2026
+           UFES &nbsp;|&nbsp; GRUPGIE &nbsp;|&nbsp; R&S PROJECT © 2026
          </div>
       </div>
       <PWAInstallModal isOpen={isPWAOpen} onClose={() => setIsPWAOpen(false)} lang={lang} />
